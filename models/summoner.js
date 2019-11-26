@@ -1,14 +1,5 @@
 const mongoose = require('mongoose');
 
-
-const summonerSchema = new mongoose.Schema({
-    accountId: String,
-    summonerName: String,
-    matchHistory: [matchSchema]
-    }, {
-    timestamps: true
-    });
-
 const matchSchema = new mongoose.Schema({
     gameId: String,
     championId: Number,
@@ -44,5 +35,15 @@ const matchSchema = new mongoose.Schema({
 }, {
     timestamps: true
 });
+
+const summonerSchema = new mongoose.Schema({
+    accountId: String,
+    summonerName: String,
+    matchHistory: [matchSchema]
+    }, {
+    timestamps: true
+    });
+
+
 
 module.exports = mongoose.model('Summoner', summonerSchema);

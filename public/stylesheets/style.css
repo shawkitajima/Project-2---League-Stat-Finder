@@ -6,3 +6,31 @@ body {
 a {
   color: #00B7FF;
 }
+
+body {
+  color: blue;
+  font-size: 3rem;
+}
+.welcome0 {
+  background-image: url("http://ddragon.leagueoflegends.com/cdn/img/champion/splash/Annie_12.jpg");
+  background-size: cover;
+}
+
+.welcome1 {
+  background-image: url("http://ddragon.leagueoflegends.com/cdn/img/champion/splash/Ashe_8.jpg");
+  background-size: cover;
+}
+
+.welcome2 {
+  background-image: url("http://ddragon.leagueoflegends.com/cdn/img/champion/splash/Syndra_4.jpg");
+  background-size: cover;
+}
+.welcome3 {
+  background-image: url("http://ddragon.leagueoflegends.com/cdn/img/champion/splash/Sona_5.jpg");
+  background-size: cover;
+}
+
+.welcome4 {
+  background-image: url("http://ddragon.leagueoflegends.com/cdn/img/champion/splash/Ziggs_6.jpg");
+  background-size: cover;
+}
