@@ -1,6 +1,13 @@
 <%- include('../partials/header') %>
-
-<h1><%=data.name%></h1>
-<h2><%=`${mastery.tier} ${mastery.rank}`%></h2>
-
+<section class="pre">
+        <div class="left-side">    
+            <h3><%=data.name%></h3>
+                <img class="emblem" src="/images/Emblem_<%=mastery.tier%>.png" />
+            <h3><%=`${mastery.tier} ${mastery.rank}`%></h3>
+            <form method="POST" action="/summoners/create/<%=mastery.summonerName%>/<%=data.accountId%>">
+                <button type="submit">Save</button>
+            </form> 
+        </div>
+        <div class="welcome-blank" style="background-image: url('http://ddragon.leagueoflegends.com/cdn/img/champion/splash/<%=champion%>_0.jpg');"></div>
+    </section>
 <%- include('../partials/footer') %>

@@ -39,7 +39,7 @@ const matchSchema = new mongoose.Schema({
 const summonerSchema = new mongoose.Schema({
     accountId: String,
     summonerName: String,
-    matchHistory: [matchSchema]
+    matchHistory: Array
     }, {
     timestamps: true
     });

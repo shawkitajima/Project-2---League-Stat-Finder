@@ -1,5 +1,11 @@
 <%- include('./partials/pre-header') %>
-    <h3>To Get Started,</h3>
-    <a href="/auth/google"><i class="material-icons left">vpn_key</i>Login with Google</a>
-    <%- include('./partials/footer') %>
 
+<h3>Welcome to the League of Legends Stat Finder!</h3>
+<section class="pre">
+    <div class="left-side">    
+            <h3>To Get Started,</h3>
+            <a href="/auth/google"><i class="material-icons left">vpn_key</i>Login with Google</a>
+    </div>
+    <div class="welcome<%=Math.floor(Math.random() * Math.floor(10));%>"></div>
+</section>
+<%- include('./partials/footer') %>

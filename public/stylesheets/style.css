@@ -7,30 +7,104 @@ a {
   color: #00B7FF;
 }
 
-body {
-  color: blue;
-  font-size: 3rem;
+.left-side {
+  background-color: #B8BCBF;
+  border-top: 2px solid black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
 }
+
 .welcome0 {
   background-image: url("http://ddragon.leagueoflegends.com/cdn/img/champion/splash/Annie_12.jpg");
   background-size: cover;
+  background-position: center;
 }
 
 .welcome1 {
   background-image: url("http://ddragon.leagueoflegends.com/cdn/img/champion/splash/Ashe_8.jpg");
   background-size: cover;
+  background-position: center;
 }
 
 .welcome2 {
   background-image: url("http://ddragon.leagueoflegends.com/cdn/img/champion/splash/Syndra_4.jpg");
   background-size: cover;
+  background-position: center;
 }
 .welcome3 {
   background-image: url("http://ddragon.leagueoflegends.com/cdn/img/champion/splash/Sona_5.jpg");
   background-size: cover;
+  background-position: center;
 }
 
 .welcome4 {
   background-image: url("http://ddragon.leagueoflegends.com/cdn/img/champion/splash/Ziggs_6.jpg");
   background-size: cover;
+  background-position: center;
+}
+
+.welcome5 {
+  background-image: url("http://ddragon.leagueoflegends.com/cdn/img/champion/splash/Nami_3.jpg");
+  background-size: cover;
+  background-position: center;
+}
+
+.welcome6 {
+  background-image: url("http://ddragon.leagueoflegends.com/cdn/img/champion/splash/Fiora_5.jpg");
+  background-size: cover;
+  background-position: center;
+}
+
+.welcome7 {
+  background-image: url("http://ddragon.leagueoflegends.com/cdn/img/champion/splash/Akali_5.jpg");
+  background-size: cover;
+  background-position: center;
+}
+
+.welcome8 {
+  background-image: url("https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Evelynn_3.jpg");
+  background-size: cover;
+  background-position: center;
+}
+
+.welcome9 {
+  background-image: url("https://ddragon.leagueoflegends.com/cdn/img/champion/splash/MonkeyKing_6.jpg");
+  background-size: cover;
+  background-position: center;
+}
+
+.welcome9 {
+  background-image: url("https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Hecarim_5.jpg");
+  background-size: cover;
+  background-position: center;
+}
+
+.welcome-blank {
+  background-size: cover;
+  background-position: center;  
+}
+
+body {
+  padding: 0vh;
+  background-color: #B8BCBF;
+}
+.pre {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 27% 73%;
+  min-height: 100vh;
+  padding: 0vh;
+}
+
+
+nav {
+  border-bottom: 1px solid black;
+}
+
+
+.emblem {
+  width: 20rem;
+  height: 20rem;
 }
