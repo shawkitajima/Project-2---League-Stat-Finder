@@ -1,0 +1,35 @@
+<%- include('../partials/header') %>
+
+<% Object.values(summObj).forEach(champ => { %>
+    <% console.log(champ) %>
+    <div class="box-2">
+            <div class="results">
+              <img class="icon" src="http://ddragon.leagueoflegends.com/cdn/9.23.1/img/champion/<%=champ.champion%>" />
+            </div>
+            <div class="results">
+              <div>Wins: <%=champ.wins%></div>
+              <div>Losses: <%=champ.losses%></div>
+              <div>Win Rate: <%=Math.floor(champ.wins / (champ.wins + champ.losses) * 100) %>%</div>
+              <div>Kills: <%=champ.kills %></div>
+              <div>Deaths: <%=champ.deaths %></div>
+              <div>Assists: <%=champ.assists %></div>
+            </div>
+            <div class="results">
+              <div>Time Played: <%=Math.floor(champ.gameSeconds/60) %> Minutes</div>
+              <div>Minions Killed: <%=champ.minionsKilled %></div>
+              <div>Gold Earned: <%=champ.goldEarned %></div>
+              <div>Gold Spent: <%=champ.goldSpent %></div>
+              <div>Total Leftover Gold <%=champ.goldEarned - champ.goldSpent %></div>
+            </div>
+            <div class="results">
+              <div>Wards Placed: <%=champ.wardsPlaced %></div>
+              <div>Damage to Champions: <%=champ.totalDamageDealtToChampions %></div>
+              <div>Damage Dealt: <%=champ.totalDamageDealt %></div>
+              <div>Damage Taken: <%=champ.totalDamageTaken %></div>
+              <div>Turret Kills: <%=champ.turretKills %></div>
+            </div>
+          </div>
+
+<% }) %>
+
+<%- include('../partials/footer') %>

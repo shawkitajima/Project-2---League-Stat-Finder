@@ -11,8 +11,8 @@ require('./config/database');
 require('./config/passport');
 
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
 var summonersRouter = require('./routes/summoners')
+var usersRouter = require('./routes/users');
 
 var app = express();
 

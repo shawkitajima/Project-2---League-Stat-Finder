@@ -1,14 +1,17 @@
 const request = require('request');
-const User = require('../models/user');
 const Summoner = require('../models/summoner');
+const User = require('../models/user');
 
 module.exports = {
     index,
-    new: newSummoner
+    new: newSummoner,
 }
 
 function index(req, res, next) {
-    res.render('users/index', { user: req.user });
+    User.findById(req.user.id).populate('summoners').exec(function(err, summoners) {
+        if (err) console.log(err);
+        res.render('users/index', { user: req.user, summoners});
+    })
   }
 
 function newSummoner(req, res, next) {

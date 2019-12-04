@@ -1,0 +1,46 @@
+<%- include('../partials/header') %>
+
+<% if (summoner.matchHistory.length > 0) { %>
+    <% summoner.matchHistory.forEach(function(match) { %>
+
+    <div class="box"> 
+            <div class="results">
+            <img class="icon" src="http://ddragon.leagueoflegends.com/cdn/9.23.1/img/champion/<%=match.champion%>" />
+            </div>
+            <div class="results">
+                <% if (match.win) { %>
+                    <div><b>Win</b></div>
+                <% } else { %>
+                    <div><b>Loss</b></div>
+                <% } %>
+                <div><%=match.queueId %></div>
+                <div class=summspells> 
+                    <img src="http://ddragon.leagueoflegends.com/cdn/9.23.1/img/spell/<%=match.spell1Id%>" />
+                    <img src="http://ddragon.leagueoflegends.com/cdn/9.23.1/img/spell/<%=match.spell2Id%>" />
+                </div>
+            </div>
+            <div class="results">
+                <div>
+                <img src="http://ddragon.leagueoflegends.com/cdn/9.23.1/img/item/<%=match.item0%>.png" onerror="this.style.display='none'" />
+                <img src="http://ddragon.leagueoflegends.com/cdn/9.23.1/img/item/<%=match.item1%>.png" onerror="this.style.display='none'" />
+                <img src="http://ddragon.leagueoflegends.com/cdn/9.23.1/img/item/<%=match.item2%>.png" onerror="this.style.display='none'" >
+                <img src="http://ddragon.leagueoflegends.com/cdn/9.23.1/img/item/<%=match.item3%>.png" onerror="this.style.display='none'" />
+                <img src="http://ddragon.leagueoflegends.com/cdn/9.23.1/img/item/<%=match.item4%>.png" onerror="this.style.display='none'" />
+                <img src="http://ddragon.leagueoflegends.com/cdn/9.23.1/img/item/<%=match.item5%>.png" onerror="this.style.display='none'" />
+                <img src="http://ddragon.leagueoflegends.com/cdn/9.23.1/img/item/<%=match.item6%>.png" onerror="this.style.display='none'" />
+                </div>
+                <div class="KDA"> 
+                <div><img style="float:left;" src="http://ddragon.leagueoflegends.com/cdn/5.5.1/img/ui/score.png"/><%=match.kills%>/<%=match.deaths%>/<%=match.assists%></div>
+                <div><img style="float:left;" src="http://ddragon.leagueoflegends.com/cdn/5.5.1/img/ui/minion.png"/><%=match.totalMinionsKilled%></div>
+                <div><img style="float:left;" src="http://ddragon.leagueoflegends.com/cdn/5.5.1/img/ui/items.png"/><%=match.goldEarned%></div>
+            </div>
+        </div>
+            <div class="results">
+            <div><%=match.mapId%></div>
+            <div><%=match.gameDuration%></div>
+            </div>
+        </div>
+
+    <% }) %>
+<% } %>
+<%- include('../partials/footer') %>

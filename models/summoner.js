@@ -1,14 +1,15 @@
 const mongoose = require('mongoose');
 
 const matchSchema = new mongoose.Schema({
+    champion: String,
     gameId: String,
     championId: Number,
-    mapId: Number,
+    mapId: String,
     gameType: String,
     win: Boolean,
-    queueId: Number,
-    spell1Id: Number,
-    spell2Id: Number,
+    queueId: String,
+    spell1Id: String,
+    spell2Id: String,
     item0: Number,
     item1: Number,
     item2: Number,
@@ -16,7 +17,7 @@ const matchSchema = new mongoose.Schema({
     item4: Number,
     item5: Number,
     item6: Number,
-    kill: Number,
+    kills: Number,
     deaths: Number,
     assists: Number,
     totalMinionsKilled: Number,
@@ -25,7 +26,8 @@ const matchSchema = new mongoose.Schema({
     totalDamageDealtToChampions: Number,
     totalDamageDealt: Number,
     totalDamageTaken: Number,
-    gameDuration: Number,
+    gameDuration: String,
+    gameSeconds: Number,
     gameCreation: Number,
     wardsPlaced: Number,
     pentaKills: Number,
@@ -39,7 +41,7 @@ const matchSchema = new mongoose.Schema({
 const summonerSchema = new mongoose.Schema({
     accountId: String,
     summonerName: String,
-    matchHistory: Array
+    matchHistory: [matchSchema]
     }, {
     timestamps: true
     });

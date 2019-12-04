@@ -101,10 +101,50 @@ body {
 
 nav {
   border-bottom: 1px solid black;
+  background-color: #D1ABFF;
 }
 
 
 .emblem {
   width: 20rem;
   height: 20rem;
+}
+
+
+.box {
+  display: grid;
+  grid-template-columns: 15% 15% 50% 15%;
+  grid-template-rows: 10rem;
+  text-align: center;
+  background-color: #383140;
+  color: white;
+  border-bottom: 2px solid black;
+}
+
+.box-2 {
+  display: grid;
+  grid-template-columns: 10% auto auto auto;
+  grid-template-rows: auto;
+  text-align: center;
+  background-color: #383140;
+  color: white;
+  border-bottom: 2px solid black;
+}
+
+.icon {
+  border-radius: 50%;
+  height: 75%;
+  width: 75%;
+  margin-left: 2rem;
+}
+
+.KDA {
+  display: flex;
+  justify-content: space-around;
+}
+
+.results {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
 }

@@ -4,5 +4,7 @@ const summonerCtrl = require('../controllers/summoners.js')
 
 /* GET users listing. */
 router.post('/summoners/create/:name/:accountId', summonerCtrl.create);
+router.get('/summoners/:id/matches', summonerCtrl.show);
+router.get('/summoners/:id/stats', summonerCtrl.stats);
 
 module.exports = router;

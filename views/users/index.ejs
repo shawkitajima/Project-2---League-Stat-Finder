@@ -1,7 +1,17 @@
 <%- include('../partials/header') %>
 
 <h1>Welcome back, <%=user.name%></h1>
-<h1><%=user.summoners.join('')%></h1>
+<%if (summoners.summoners.length > 0) { %>
+    <h2>Here are your saved summoners</h2>
+<%summoners.summoners.forEach(function(summoner) {%>
+    <h1><%=summoner.summonerName%></h1>
+    <a href="/summoners/<%=summoner._id%>/matches">Match History</a>
+    <a href="/summoners/<%=summoner._id%>/stats">Cumulative Statistics</a>
+<%})%>
+<%} else { %>
+    <h2>You don't have any summoners saved yet</h2>
+    <h3>To save some, go ahead and search for them in the search bar</h3>
+<% } %>
 
 <%- include('../partials/footer') %>
 
