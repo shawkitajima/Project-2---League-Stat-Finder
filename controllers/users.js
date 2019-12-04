@@ -22,6 +22,7 @@ function newSummoner(req, res, next) {
             request('http://ddragon.leagueoflegends.com/cdn/9.23.1/data/en_US/champion.json', function(err, response) {
                 let champions = JSON.parse(response.body);
                 request(`https://na1.api.riotgames.com/lol/match/v4/matchlists/by-account/${data.accountId}?api_key=${process.env.API_KEY}`, function(err, response) {
+                    if (err) return res.render('error', {error: err});
                     let matches = JSON.parse(response.body);
                     let champion = matches.matches[0].champion;
                     let val = Object.values(champions.data).find(champ => champ.key == champion)

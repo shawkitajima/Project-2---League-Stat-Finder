@@ -1,7 +1,6 @@
 const request = require('request');
 const fetch = require('node-fetch');
 const moment = require('moment');
-const User = require('../models/user');
 const Summoner = require('../models/summoner');
 
 
@@ -15,14 +14,33 @@ module.exports = {
 function create(req, res, next) {
     let summonerName = req.params.name;
     let accountId = req.params.accountId;
-    Summoner.create({
-        summonerName,
-        accountId
-    }, function(err, summoner) {
-        req.user.summoners.push(summoner._id);
-        req.user.save(function(err) {
-            addSummonerMatches(accountId, summoner, res);
-        });
+    Summoner.findOne({accountId: accountId}, function(err, summ) {
+        if (summ === null) {
+            Summoner.create({
+                summonerName,
+                accountId
+            }, function(err, summoner) {
+                summoner.users.push(req.user._id);
+                summoner.save(function(err) {
+                    req.user.summoners.push(summoner._id);
+                    req.user.save(function(err) {
+                        addSummonerMatches(accountId, summoner, res);
+                    });
+                });
+            });
+        }
+        else {
+            console.log(summ);
+            if (summ.users.includes(req.user._id)) {
+                res.redirect('/users');
+            }
+            else {
+                req.user.summoners.push(summ._id);
+                req.user.save(function(err) {
+                    addSummonerMatches(accountId, summ, res);
+                });
+            }
+        }
     });
 }
 
@@ -36,6 +54,7 @@ function show(req, res) {
 function stats(req, res) {
     Summoner.findById(req.params.id, function(err, summoner) {
         let summObj = {};
+        // We have to initialize the object of objects that will hold our champions because you cannot add number to undefined
         summoner.matchHistory.forEach(summ => {
             summObj[summ.championId] = {}
             summObj[summ.championId].wins = 0;
@@ -55,7 +74,7 @@ function stats(req, res) {
             summObj[summ.championId].totalDamageTaken = 0;
             summObj[summ.championId].turretKills = 0;
         });
-        
+        // Now we can add the values to our object of objects
         summoner.matchHistory.forEach(summ => {
             if (summ.win) {
                 summObj[summ.championId].wins += 1;
@@ -87,8 +106,6 @@ function stats(req, res) {
 
 function removeSummoner(req, res) {
         req.user.summoners = req.user.summoners.filter(sum => sum != req.params.id);
-        console.log(req.params.id);
-        console.log(req.user.summoners);
         req.user.save(function(err) {
             res.redirect('/users');
         });
@@ -113,9 +130,7 @@ function addSummonerMatches(account, summoner, res) {
                         fetchGames(data.matches, summ).then(arr => {
                             let pusher = [];
                             arr.forEach(match => {
-                                // let matchObj = JSON.parse(match);
                                 let test = createMatchModel(match, summoner.summonerName, champions, summoners, queue)
-                                console.log(test);
                                 pusher.push(test);
                             });
                             summ.matchHistory.push(...pusher);
@@ -180,7 +195,7 @@ function fetchGames(data, summ) {
     let urls = [];
     data.forEach((match, idx) => {
         if (idx >= 18) return;
-        if (!summ.matchHistory.includes(match.gameId)) {
+        if (!summ.matchHistory.some(game => game.gameId == match.gameId)) {
             urls.push(`https://na1.api.riotgames.com/lol/match/v4/matches/${match.gameId}?api_key=${process.env.API_KEY}`);
     }
     });
