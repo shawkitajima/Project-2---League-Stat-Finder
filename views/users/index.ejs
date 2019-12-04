@@ -7,6 +7,9 @@
     <h1><%=summoner.summonerName%></h1>
     <a href="/summoners/<%=summoner._id%>/matches">Match History</a>
     <a href="/summoners/<%=summoner._id%>/stats">Cumulative Statistics</a>
+    <form style="display:inline;" action="/summoners/<%=summoner._id%>?_method=DELETE" method="POST">
+        <button type="submit">Delete</button>
+    </form>
 <%})%>
 <%} else { %>
     <h2>You don't have any summoners saved yet</h2>

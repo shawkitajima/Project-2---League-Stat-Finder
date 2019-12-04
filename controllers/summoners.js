@@ -8,7 +8,8 @@ const Summoner = require('../models/summoner');
 module.exports = {
     create,
     show,
-    stats
+    stats,
+    delete: removeSummoner
 }
 
 function create(req, res, next) {
@@ -84,6 +85,14 @@ function stats(req, res) {
     });
 }
 
+function removeSummoner(req, res) {
+        req.user.summoners = req.user.summoners.filter(sum => sum != req.params.id);
+        console.log(req.params.id);
+        console.log(req.user.summoners);
+        req.user.save(function(err) {
+            res.redirect('/users');
+        });
+}
 
 // We need to put each of our requests into an array
 // We can use Promise.all() to send off each request, maybe use fetch. It will return the responses in an array.

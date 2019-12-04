@@ -11,20 +11,10 @@
     <script defer src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
   </head>
 <body>
-<ul id="dropdown1" class="dropdown-content">
-  <li><a href="#!">one</a></li>
-  <li><a href="#!">two</a></li>
-  <li class="divider"></li>
-  <li><a href="#!">three</a></li>
-</ul>
 <nav>
     <div class="nav-wrapper">
       <a href="/users" class="brand-logo">League of Legends Fun Statistics</a>
       <ul class="right hide-on-med-and-down">
-          <!-- Dropdown Trigger -->
-          <li><a class="dropdown-trigger" href="#!" data-target="dropdown1">Summoner<i class="material-icons right">arrow_drop_down</i></a></li>
-          <li><a href="/summoners/matches/show">Match History</a></li>
-          <li><a href="/">Total Statistics</a></li>
           <li>
               <form action="/users/new" method="POST">
                   <input name="summoner" placeholder="search...">
