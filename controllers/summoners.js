@@ -30,14 +30,16 @@ function create(req, res, next) {
             });
         }
         else {
-            console.log(summ);
             if (summ.users.includes(req.user._id)) {
                 res.redirect('/users');
             }
             else {
                 req.user.summoners.push(summ._id);
                 req.user.save(function(err) {
-                    addSummonerMatches(accountId, summ, res);
+                    summ.users.push(req.user._id);
+                    summ.save(function(err) {
+                        addSummonerMatches(accountId, summ, res);
+                    })
                 });
             }
         }
@@ -105,10 +107,17 @@ function stats(req, res) {
 }
 
 function removeSummoner(req, res) {
-        req.user.summoners = req.user.summoners.filter(sum => sum != req.params.id);
-        req.user.save(function(err) {
-            res.redirect('/users');
+    req.user.summoners = req.user.summoners.filter(sum => sum != req.params.id);
+    req.user.save(function(err) {
+        Summoner.findById(req.params.id, function(err, summ) {
+            summ.users = summ.users.filter(user => (user != req.user._id.toString()));
+            console.log('users', summ.users);
+            console.log('user id', req.user._id);
+            summ.save(function(err) {
+                res.redirect('/users');
+            });
         });
+    });
 }
 
 // We need to put each of our requests into an array
@@ -120,6 +129,9 @@ function removeSummoner(req, res) {
 function addSummonerMatches(account, summoner, res) {
     request(`https://na1.api.riotgames.com/lol/match/v4/matchlists/by-account/${account}?api_key=${process.env.API_KEY}`, function(err, response) {
         let data = JSON.parse(response.body);
+        if (data.matches.length < 1) {
+            return res.render('error', {message: 'it looks like there are no matches played for this account'});
+        }
         request('http://ddragon.leagueoflegends.com/cdn/9.23.1/data/en_US/champion.json', function(err, response) {
             let champions = JSON.parse(response.body);
             request('http://ddragon.leagueoflegends.com/cdn/9.23.1/data/en_US/summoner.json', function(err, response) {

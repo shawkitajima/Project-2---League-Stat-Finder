@@ -24,6 +24,9 @@ function newSummoner(req, res, next) {
                 request(`https://na1.api.riotgames.com/lol/match/v4/matchlists/by-account/${data.accountId}?api_key=${process.env.API_KEY}`, function(err, response) {
                     if (err) return res.render('error', {error: err});
                     let matches = JSON.parse(response.body);
+                    if (!matches.matches) {
+                        return res.render('error', {message: "It looks like this summoners doesn't have any matches right now"});
+                    }
                     let champion = matches.matches[0].champion;
                     let val = Object.values(champions.data).find(champ => champ.key == champion)
                     res.render('users/new', {
